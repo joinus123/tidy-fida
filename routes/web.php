@@ -1,9 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\LoginController;
 use App\Http\controllers\RegisterController;
 use App\Http\controllers\DashboardController;
+use App\Http\Controllers\BookController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +30,14 @@ Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboar
 Route::get('user',[DashboardController::class,'user'])->name('user');
 Route::get('employee-form',[DashboardController::class,'view_employeeform'])->name('view-employeeform');
 Route::post('addemployee',[DashboardController::class,'addemployee'])->name('addemployee');
+Route::get('employee-edit/{id}',[DashboardController::class,'employee_edit'])->name('employee_edit');
 Route::get('delete/{id}',[DashboardController::class,'delete'])->name('delete');
+Route::post('update-employee/{id}',[DashboardController::class,'update_employee'])->name('update-employee');
+
+Route::get('list-book',[BookController::class,'list_book'])->name('list-book');
+Route::get('viewform-book',[BookController::class,'viewform_book'])->name('viewform-book');
+Route::post('add-book',[BookController::class,'add_book'])->name('add-book');
+Route::get('delete/{id}',[BookController::class,'delete'])->name('delete');
+Route::get('book-edit/{id}',[BookController::class,'book_edit'])->name('book-edit');
+Route::post('update-book/{id}',[BookController::class,'update_book'])->name('update-book');
+

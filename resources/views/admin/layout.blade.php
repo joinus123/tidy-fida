@@ -9,21 +9,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet">
 <!-- BEGIN VENDOR CSS-->
-<link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/vendors.css')}}">
 <!-- END VENDOR CSS-->
 <!-- BEGIN STACK CSS-->
-<link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/app.css')}}">
 <!-- END STACK CSS-->
 <!-- BEGIN Page Level CSS-->
-<link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
 <!-- END Page Level CSS-->
-<link rel="stylesheet" type="text/css" href="app-assets/css/plugins/calendars/fullcalendar.css">
-<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/calendars/fullcalendar.min.css">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/calendars/fullcalendar.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/calendars/fullcalendar.min.css')}}">
 <!-- BEGIN Custom CSS-->
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css" type="text/css">
-<link rel="stylesheet" href="assets/css/CustomScrollbar.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/datatables.min.css">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/jquery.mCustomScrollbar.css" type="text/css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/CustomScrollbar.css" type="text/css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
 <!-- END Custom CSS-->
 </head>
 
@@ -38,7 +38,7 @@
  <div class="main-menu-content">
    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
      <li class="nav-item active"><a href="{{route('dashboard')}}"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Dashboard </span></a></li>
-     <li class="nav-item "><a href="#"><i class="fa fa-file-alt"></i><span class="menu-title" data-i18n="">Estimation Request</span></a></li>
+     <li class="nav-item "><a href="{{route('list-book')}}"><i class="fa fa-file-alt"></i><span class="menu-title" data-i18n="">Books</span></a></li>
      <li class="nav-item "><a href="{{route('user')}}"><i class="fa fa-users"></i><span class="menu-title" data-i18n="">Users</span></a></li>
      <li class="nav-item "><a href="#"><i class="fas fa-comment-alt"></i><span class="menu-title" data-i18n="">feedback</span></a></li>
    </ul>
@@ -52,19 +52,57 @@
 
 <!-- BEGIN VENDOR JS--> 
 
-<script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script> 
-<script src="assets/js/chart.js" type="text/javascript"></script> 
-<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script> 
-<script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script> 
-<script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/extensions/moment.min.js" type="text/javascript"></script> 
-<script src="app-assets/js/core/app-menu.js" type="text/javascript"></script> 
-<script src="app-assets/js/core/app.js" type="text/javascript"></script> 
-<script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script> 
-<script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script> 
-<script src="assets/js/function.js" type="text/javascript"></script> 
+<script src="{{asset('app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script> 
+<script src="{{asset('assets/js/chart.js')}}" type="text/javascript"></script> 
+<script src="{{asset('assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script> 
+<script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/js/scripts/tables/datatables/datatable-basic.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/vendors/js/charts/echarts/echarts.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/vendors/js/extensions/moment.min.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/js/core/app.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script> 
+<script src="{{asset('app-assets/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script> 
+<script src="{{asset('assets/js/function.js')}}" type="text/javascript"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+  @if(Session::has('message'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.success("{{ session('message') }}");
+  @endif
+
+  @if(Session::has('error'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.error("{{ session('error') }}");
+  @endif
+
+  @if(Session::has('info'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.info("{{ session('info') }}");
+  @endif
+
+  @if(Session::has('warning'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.warning("{{ session('warning') }}");
+  @endif
+</script>
 
 <!-- BEGIN VENDOR JS--> 
 <!-- BEGIN VENDOR JS--> 
@@ -82,6 +120,7 @@
                 echarts: 'app-assets/vendors/js/charts/echarts'
             }
         });
+
 
 
         // Configuration
@@ -223,44 +262,7 @@ function perCirc($el, end, i) {
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"  referrerpolicy="no-referrer"></script>
-    <script>
-      @if(Session::has('success'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.success("{{ session('success') }}");
-      @endif
-    
-      @if(Session::has('error'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.error("{{ session('error') }}");
-      @endif
-    
-      @if(Session::has('info'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.info("{{ session('info') }}");
-      @endif
-    
-      @if(Session::has('warning'))
-      toastr.options =
-      {
-        "closeButton" : true,
-        "progressBar" : true
-      }
-          toastr.warning("{{ session('warning') }}");
-      @endif
-    </script>
-
+   
 
 </body>
 </html>

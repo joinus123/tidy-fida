@@ -1,5 +1,4 @@
 @extends('admin/layout')
-
 @section('nav_bar')
 <style>
   table td img {
@@ -27,7 +26,7 @@
             <li class="dropdown dropdown-user nav-item"> <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"> <img src="app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"> </span> <span class="user-name">John Doe</span> </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href={{route('logout')}}><i class="fa fa-power-off"></i>Logout</a> </div>
+                <a class="dropdown-item" href="{{route('logout')}}"><i class="fa fa-power-off"></i>Logout</a> </div>
             </li>
             <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
           </ul>
@@ -52,10 +51,10 @@
                   <div class="card-body  card-dashboard">
                     <div class="row">
                       <div class="col-xl-12 col-12">
-                        @if(Session::has('message'))
-                        <p class="{{Session::get('class')}}">{{Session::get('message')}}</p>
-                        @endif
-                        <h1 class="pull-left">User Log</h1>
+                      @if(Session::has('message'))
+                      <p class="{{Session::get('class')}}">{{Session::get('message')}}</p>
+                      @endif
+ <h1 class="pull-left">User Log</h1>
                       </div>
                       <p>
                         <a class="btn btn-primary" href="{{route('view-employeeform')}}"><span class="glyphicon glyphicon-plus"></span> Add Employee</a>
@@ -94,8 +93,8 @@
                                 <button type="button" class="btn btn-drop-table btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-ellipsis-v"></i></button>
                                 <div class="dropdown-menu" > 
                                   <a class="dropdown-item" href="#" > <i class="fa fa-eye"></i>View </a>  
-                                  <a class="dropdown-item" href="#"  > <i class="fa fa-edit"></i>Edit</a>
-                                  <a class="dropdown-item" href="{{route('delete',$data['id'])}}"  > <i class="fa fa-trash"></i>Delete</a></div>
+                                  <a class="dropdown-item" href="{{route('employee_edit',$data['id'])}}"  > <i class="fa fa-edit"></i>Edit</a>
+                                  <a class="dropdown-item" href="{{route('delete',$data['id'])}}" > <i class="fa fa-trash"></i>Delete</a></div>
                               </div></td>
                              
                           </tr>
@@ -126,18 +125,18 @@
      <div class="modal fade bd-example-delete-modal-lg another-modal another-modal-with-buttons delete-modal " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lgg">
          <div class="modal-content">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
            <div class="payment-modal-main">
              <div class="payment-modal-inner">
                <form action="">
                  <div class="row">
                    <div class="col-12">
-   <img src="images/block-icon.png" class="img-fluid" alt="">
+                     <img src="images/block-icon.png" class="img-fluid" alt="">
                      <p>Are you sure you want to unblock this user?</p>
                    </div>
                    <div class="col-12 text-center">
                      <button type="button" class="blue-btn mr-1" data-dismiss="modal">No</button>
-   <button type="button" class="blue-btn" id="delete-menu">Yes </button>
+                    button type="button" class="blue-btn" id="delete-menu">Yes </button>
                    </div>
                  </div>
                </form>
@@ -164,7 +163,7 @@
                <form action="">
                  <div class="row">
                    <div class="col-12">
-   <img src="images/check.png" class="img-fluid" alt="">
+                   <img src="images/check.png" class="img-fluid" alt="">
                      <p>Abc user has been unblocked</p>
                    </div>
                    <div class="col-12 text-center">

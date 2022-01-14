@@ -1,5 +1,13 @@
 @extends('admin/layout')
 @section('nav_bar')
+<style>
+  table td img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+</style>
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-border">
     <div class="navbar-wrapper">
       <div class="navbar-header">
@@ -24,66 +32,89 @@
           </ul>
         </div>
       </div>
-    </div> 
+    </div>
   </nav>
   @stop
 
   
-@section('main_content')
 
-<div class="app-content content add-item admin-profile">
+@section('main_content')
+<div class="app-content content menu ">
     <div class="content-wrapper">
       <div class="content-body"> 
         <!-- Basic form layout section start -->
         <section id="configuration">
           <div class="row">
-                      <div class="col-lg-6 offset-lg-3 col-12">
-                        <div class="box">
-                         <div class="col-12 d-flex justify-content-between align-items-center">
-                        <h1 class="pull-left">Add Employee</h1>
-                   
-                        </div>
-                         <form action="{{route('addemployee')}}" method="post"  enctype="multipart/form-data">
-                             @csrf
-                            <div class="row">
-                              <div class="col-12 form-group">
-                                <div class="attached"> <img src="images/student-pro-girl.png" alt="">
-                                  <button name="file" type="button"  class="camera-btn" onclick="document.getElementById('upload').click()"><i class="fa fa-camera"></i></button>
-                                  <input type="file" name="image" id="upload" name="file">
-                                </div>
-                              </div>
-                              <div class="col-12 form-group">
-                                <label for="">First Name </label>
-                                <input  type="text" contenteditable="true" spellcheck="true"  name="fullname" class="form-control" placeholder="Full Name">
-                              </div>
-                              <div class="col-12 form-group">
-                                <label for="">Last Name </label>
-                                <input type="text" contenteditable="true" spellcheck="true" name="lastname" class="form-control" placeholder="Last Name">
-                              </div>
-                             <div class="col-12 form-group">
-                                <label for="">Email</label>
-                                <input  type="email" contenteditable="true" spellcheck="true" name="email"  class="form-control" placeholder="Email ">
-                              </div>
-
-                              <div class="col-12 form-group">
-                                <label for="">Phone Number</label>
-                                <input type="number" contenteditable="true" spellcheck="true"  name="phone_number"   class="form-control" placeholder="Phone Number">
-                              </div>
-                              
-                              
-                             
-                              <div class="col-12 form-group text-center">
-                                <button type="submit" class="blue-btn w-100" >Add</button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
+            <div class="col-12">
+              <div class="card rounded pad-20">
+                <div class="card-content collapse show">
+                  <div class="card-body  card-dashboard">
+                    <div class="row">
+                      <div class="col-xl-12 col-12">
+                      @if(Session::has('message'))
+                      <p class="{{Session::get('class')}}">{{Session::get('message')}}</p>
+                      @endif
+                      <h1 class="pull-left">Book Log</h1>
                       </div>
+
+                      <p>
+                        <a class="btn btn-primary" href="{{route('viewform-book')}}"><span class="glyphicon glyphicon-plus"></span> Add Book</a>
+                    </p>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="maain-tabble table-responsive">
+                      <table class="table table-striped table-bordered zero-configuration">
+                        <thead>
+                    
+                          <tr>
+                         
+                            <th>S.no</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Placeholder</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($data as $view)
+                        <tr>
+                           
+                            <td>{{$view['id']}}</td>
+                            <td><img src="images/table-img.png">{{$view['title']}}</td>
+                            <td><img src="images/table-img.png">{{$view['author']}}</td>
+                            <td>{{$view['price']}}</td>
+                            <td>   
+                               <img src="images/{{ $view['image'] }}" alt="">
+                            </td>
+                            <td>{{$view['created_at']}}</td>
+                            <td><div class="btn-group mr-1 mb-1">
+                                <button type="button" class="btn btn-drop-table btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-ellipsis-v"></i></button>
+                                <div class="dropdown-menu" > 
+                                  <a class="dropdown-item" href="#" > <i class="fa fa-eye"></i>View </a>  
+                                  <a class="dropdown-item" href="{{route('book-edit',$view['id'])}}"  > <i class="fa fa-edit"></i>Edit</a>
+                                  <a class="dropdown-item" href="{{route('delete',$view['id'])}}" > <i class="fa fa-trash"></i>Delete</a></div>
+                              </div></td>
+                             
+                          </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!--main card end--> 
+                
+              </div>
+            </div>
+          </div>
         </section>
+        <!-- // Basic form layout section end --> 
       </div>
     </div>
   </div>
+  
   <!-- ////////////////////////////////////////////////////////////////////////////-->
   
   
@@ -93,18 +124,18 @@
      <div class="modal fade bd-example-delete-modal-lg another-modal another-modal-with-buttons delete-modal " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lgg">
          <div class="modal-content">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
            <div class="payment-modal-main">
              <div class="payment-modal-inner">
                <form action="">
                  <div class="row">
                    <div class="col-12">
-   <img src="images/block-icon.png" class="img-fluid" alt="">
+                     <img src="images/block-icon.png" class="img-fluid" alt="">
                      <p>Are you sure you want to unblock this user?</p>
                    </div>
                    <div class="col-12 text-center">
                      <button type="button" class="blue-btn mr-1" data-dismiss="modal">No</button>
-   <button type="button" class="blue-btn" id="delete-menu">Yes </button>
+                    button type="button" class="blue-btn" id="delete-menu">Yes </button>
                    </div>
                  </div>
                </form>
@@ -131,7 +162,7 @@
                <form action="">
                  <div class="row">
                    <div class="col-12">
-   <img src="images/check.png" class="img-fluid" alt="">
+                   <img src="images/check.png" class="img-fluid" alt="">
                      <p>Abc user has been unblocked</p>
                    </div>
                    <div class="col-12 text-center">

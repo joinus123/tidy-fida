@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css" type="text/css">
 <link rel="stylesheet" href="assets/css/CustomScrollbar.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/datatables.min.css">
+<link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-menu 2-columns menu-expanded " data-open="click" data-menu="vertical-menu" data-col="2-columns">
@@ -38,6 +39,15 @@
           <div class="right"> <img src="images/login-logo.png" class="img-fluid" alt="" />
             <div class="row ">
               <div class="col-12 text-center">
+              @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                 <h1>Admin Register</h1>
               </div>
             </div>
@@ -136,13 +146,7 @@
 <!--login page end here--> 
 <!-- BEGIN VENDOR JS--> 
 <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script> 
-<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script><script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script> 
 <script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script> 
-<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/extensions/moment.min.js" type="text/javascript"></script> 
-<script src="app-assets/vendors/js/extensions/fullcalendar.min.js" type="text/javascript"></script> 
-<script src="app-assets/js/scripts/extensions/fullcalendar.js" type="text/javascript"></script> 
 <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script> 
 <script src="app-assets/js/core/app.js" type="text/javascript"></script> 
 <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script> 

@@ -40,40 +40,40 @@
                       <div class="col-lg-6 offset-lg-3 col-12">
                         <div class="box">
                          <div class="col-12 d-flex justify-content-between align-items-center">
-                        <h1 class="pull-left">Add Employee</h1>
-                   
+                        <h1 class="pull-left">Edit Employee</h1>
                         </div>
-                         <form action="{{route('addemployee')}}" method="post"  enctype="multipart/form-data">
+                         <form action="{{route('update-employee', $employee->id)}}" method="post"  enctype="multipart/form-data">
                              @csrf
                             <div class="row">
+                      
                               <div class="col-12 form-group">
-                                <div class="attached"> <img src="images/student-pro-girl.png" alt="">
+                                <div class="attached">     <img src="{{asset('images/'.$employee->img)}}" alt="">
                                   <button name="file" type="button"  class="camera-btn" onclick="document.getElementById('upload').click()"><i class="fa fa-camera"></i></button>
                                   <input type="file" name="image" id="upload" name="file">
                                 </div>
                               </div>
                               <div class="col-12 form-group">
                                 <label for="">First Name </label>
-                                <input  type="text" contenteditable="true" spellcheck="true"  name="fullname" class="form-control" placeholder="Full Name">
+                                <input  type="text" contenteditable="true"  spellcheck="true" value="{{$employee->fullname}}"  name="fullname"  class="form-control" placeholder="Full Name">
                               </div>
                               <div class="col-12 form-group">
                                 <label for="">Last Name </label>
-                                <input type="text" contenteditable="true" spellcheck="true" name="lastname" class="form-control" placeholder="Last Name">
+                                <input type="text" contenteditable="true" spellcheck="true" value="{{$employee->lastname}}" name="lastname" class="form-control" placeholder="Last Name">
                               </div>
                              <div class="col-12 form-group">
                                 <label for="">Email</label>
-                                <input  type="email" contenteditable="true" spellcheck="true" name="email"  class="form-control" placeholder="Email ">
+                                <input  type="email" contenteditable="true" spellcheck="true" value="{{$employee->email}}" name="email"  class="form-control" placeholder="Email ">
                               </div>
 
                               <div class="col-12 form-group">
                                 <label for="">Phone Number</label>
-                                <input type="number" contenteditable="true" spellcheck="true"  name="phone_number"   class="form-control" placeholder="Phone Number">
+                                <input type="number" contenteditable="true" spellcheck="true"   value="{{$employee->phone_number}}" name="phone_number"   class="form-control" placeholder="Phone Number">
                               </div>
                               
                               
                              
                               <div class="col-12 form-group text-center">
-                                <button type="submit" class="blue-btn w-100" >Add</button>
+                                <button type="submit" class="blue-btn w-100" >update</button>
                               </div>
                             </div>
                           </form>

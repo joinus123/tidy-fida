@@ -39,36 +39,36 @@
           <div class="row">
                       <div class="col-lg-6 offset-lg-3 col-12">
                         <div class="box">
+
                          <div class="col-12 d-flex justify-content-between align-items-center">
-                        <h1 class="pull-left">Add Employee</h1>
-                   
+                        <h1 class="pull-left">Add Books</h1>
+                      @if(Session::has('message'))
+                      <p class="{{Session::get('class')}}">{{Session::get('message')}}</p>
+                      @endif
                         </div>
-                         <form action="{{route('addemployee')}}" method="post"  enctype="multipart/form-data">
+                         <form action="{{route('add-book')}}" method="post"  enctype="multipart/form-data">
                              @csrf
                             <div class="row">
                               <div class="col-12 form-group">
                                 <div class="attached"> <img src="images/student-pro-girl.png" alt="">
                                   <button name="file" type="button"  class="camera-btn" onclick="document.getElementById('upload').click()"><i class="fa fa-camera"></i></button>
-                                  <input type="file" name="image" id="upload" name="file">
+                                  <input type="file" name="image" id="upload" name="image">
                                 </div>
                               </div>
                               <div class="col-12 form-group">
-                                <label for="">First Name </label>
-                                <input  type="text" contenteditable="true" spellcheck="true"  name="fullname" class="form-control" placeholder="Full Name">
+                                <label for="">Full  Name</label>
+                                <input type="text"   name="title" class="form-control" placeholder="Full Name Book">
                               </div>
                               <div class="col-12 form-group">
-                                <label for="">Last Name </label>
-                                <input type="text" contenteditable="true" spellcheck="true" name="lastname" class="form-control" placeholder="Last Name">
+                                <label for="">Author</label>
+                                <input type="text"   name="author" class="form-control" placeholder="Author">
                               </div>
-                             <div class="col-12 form-group">
-                                <label for="">Email</label>
-                                <input  type="email" contenteditable="true" spellcheck="true" name="email"  class="form-control" placeholder="Email ">
-                              </div>
-
+                              
                               <div class="col-12 form-group">
-                                <label for="">Phone Number</label>
-                                <input type="number" contenteditable="true" spellcheck="true"  name="phone_number"   class="form-control" placeholder="Phone Number">
+                                <label for="">price</label>
+                                <input type="number" spellcheck="true"  name="price"   class="form-control" placeholder="phone">
                               </div>
+                              
                               
                               
                              
